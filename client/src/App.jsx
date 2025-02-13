@@ -17,7 +17,8 @@ import CheckAuth from "./components/common/check-auth";
 
 function App() {
   const isAuthenticated = true;
-  const user = {
+  const user = 
+    {
     name:"Shivam",
     role:"user",
   };
