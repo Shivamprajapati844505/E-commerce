@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom';
 import ShoppingHeader from './Header';
+import { Button} from './../ui/button';
 
 function ShoppingLayout() {
   return (
@@ -8,6 +9,7 @@ function ShoppingLayout() {
         {/* {commann heder} */}
         <ShoppingHeader/>
         <main className="flex flex-col w-full">
+          <Button>Click me</Button>
             <Outlet/>
 
         </main>
