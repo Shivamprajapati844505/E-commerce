@@ -1,11 +1,43 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import CommonForm from "./../../components/common/Form";
+import { loginFormControls } from "./../../config/index";
+
+const initalState = {
+  email: "",
+  password: "",
+};
 
 function AuthLogin() {
+  const [formData, setFormData] = useState(initalState);
+
+  function onSubmit() {}
+
   return (
-    <div>
-<h1>Login</h1>
+    <div className="max-auto w-full max-w-md space-y-6">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold tracking-tight text-primary">
+          Sign in your account
+        </h1>
+        
+      </div>
+      <CommonForm
+        formControls={loginFormControls}
+        buttonText={"Sign In"}
+        formData={setFormData}
+        onSubmit={onSubmit}
+      />
+      <p className="mt-2 text-center">
+         Don't have an account
+          <Link
+            className="font-medium ml-2 text-primary hover:underline"
+            to="/auth/register"
+          >
+            Register
+          </Link>
+        </p>
     </div>
-  )
+  );
 }
 
 export default AuthLogin;
