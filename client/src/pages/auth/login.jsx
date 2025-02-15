@@ -24,7 +24,8 @@ function AuthLogin() {
       <CommonForm
         formControls={loginFormControls}
         buttonText={"Sign In"}
-        formData={setFormData}
+        formData={formData}
+        setFormData={setFormData}
         onSubmit={onSubmit}
       />
       <p className="mt-2 text-center">

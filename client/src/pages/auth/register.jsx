@@ -1,18 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import CommonForm from "./../../components/common/Form";
 import { registerFormControls } from "./../../config/index";
+import { registerUser } from './../../store/auth-slice/index';
 
 const initalState = {
-  username: "",
+  userName: "",
   email: "",
   password: "",
 };
 
 function AuthRegister() {
   const [formData, setFormData] = useState(initalState);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  function onSubmit() {}
+  function onSubmit(event) {
+    event.preventDefault();
+    dispatch(registerUser(formData)).then((data) => {
+      console.log(data)
+    });
+  }
+  console.log(formData);
 
   return (
     <div className="max-auto w-full max-w-md space-y-6">
@@ -20,23 +30,23 @@ function AuthRegister() {
         <h1 className="text-3xl font-bold tracking-tight text-primary">
           Create new account
         </h1>
-        
       </div>
       <CommonForm
         formControls={registerFormControls}
         buttonText={"Sign Up"}
-        formData={setFormData}
+        formData={formData}
+        setFormData={setFormData}
         onSubmit={onSubmit}
       />
       <p className="mt-2 text-center">
-          Already have an account
-          <Link
-            className="font-medium ml-2 text-primary hover:underline"
-            to="/auth/login"
-          >
-            Login
-          </Link>
-        </p>
+        Already have an account
+        <Link
+          className="font-medium ml-2 text-primary hover:underline"
+          to="/auth/login"
+        >
+          Login
+        </Link>
+      </p>
     </div>
   );
 }
