@@ -79,8 +79,8 @@ const loginUser = async (req, res) => {
 };
 
 //logout
-const logout = (req, res) => {
-  res.clearCookie("token").json({
+const logoutUser = (req, res) => {
+  res.clearCookie('token').json({
     success: true,
     message: "Logged out successfully!",
   });
@@ -93,9 +93,9 @@ const authMiddleware = async (req, res, next) => {
     return res.status(401).json({
       success: false,
       message: "Unauthorised user!",
-    });
+    })
   try {
-    const decode = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
     req.user = decoded;
     next();
   } catch (error) {
@@ -106,4 +106,4 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, logout, authMiddleware };
+module.exports = { registerUser, loginUser, logoutUser, authMiddleware };

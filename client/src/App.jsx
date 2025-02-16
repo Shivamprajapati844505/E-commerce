@@ -14,12 +14,19 @@ import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/listing";
 import ShoppingCheckout from "./pages/shopping-view/checkout";
 import CheckAuth from "./components/common/check-auth";
-import { useSelector } from 'react-redux';
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from './store/auth-slice/index';
 
 function App() {
-  
-  const {user , isAuthenticated}= useSelector(state => state.auth)
+  const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+  if(isLoading) return <div> Loading...</div>
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -68,7 +75,6 @@ function App() {
           {/* not found */}
           <Route path="*" element={<NotFound />} />
           <Route path="/unauth-page" element={<NotFound />} />
-
         </Routes>
       </BrowserRouter>
     </div>
