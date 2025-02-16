@@ -4,7 +4,7 @@ import axios from "axios";
 
 const initialState = {
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true,
   user: null,
 };
 
@@ -21,6 +21,8 @@ export const registerUser = createAsyncThunk(
     return response.data;
   }
 );
+
+
 export const loginUser = createAsyncThunk(
   "/auth/login",
   async (formData) => {
@@ -35,8 +37,10 @@ export const loginUser = createAsyncThunk(
     return response.data;
   }
 );
+
+
 export const checkAuth = createAsyncThunk(
-  "/auth/checkauth",
+  "/auth/check-auth",
   async () => {
     const response = await axios.get(
       "http://localhost:5000/api/auth/check-auth",

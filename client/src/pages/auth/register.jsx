@@ -26,6 +26,7 @@ function AuthRegister() {
           title: data?.payload?.message
         });
         navigate("/auth/login");
+        window.location.reload();
       }else{
         toast({
           title: data?.payload?.message,

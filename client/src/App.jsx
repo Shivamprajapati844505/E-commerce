@@ -18,6 +18,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from './store/auth-slice/index';
+import { Skeleton } from "@/components/ui/skeleton"
+
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
@@ -26,7 +28,12 @@ function App() {
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
-  if(isLoading) return <div> Loading...</div>
+
+  if(isLoading) return <Skeleton className="w-[600px] h-[600px]" />
+
+  
+  console.log(isLoading,user);
+
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
