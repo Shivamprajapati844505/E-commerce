@@ -9,7 +9,10 @@ module.exports = {
     			md: 'calc(var(--radius) - 2px)',
     			sm: 'calc(var(--radius) - 4px)'
     		},
-    		colors: {}
+    		colors: {
+				muted: "#f5f5f5",
+              foreground: "#388333",
+			}
     	}
     },
     plugins: [require("tailwindcss-animate")],
