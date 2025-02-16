@@ -14,14 +14,12 @@ import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/listing";
 import ShoppingCheckout from "./pages/shopping-view/checkout";
 import CheckAuth from "./components/common/check-auth";
+import { useSelector } from 'react-redux';
+
 
 function App() {
-  const isAuthenticated = false;
-  const user =null;
-  //   {
-  //   name:"Shivam",
-  //   role:"user",
-  // };
+  
+  const {user , isAuthenticated}= useSelector(state => state.auth)
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
