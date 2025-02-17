@@ -33,7 +33,7 @@ function CommonForm({ formControls, formData,setFormData, onSubmit, buttonText }
           })}
             value={value}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder={getControlItem.placeholder} />
+              <SelectValue  className='placeholder:text-slate-500 ' placeholder={getControlItem.label} />
             </SelectTrigger>
             <SelectContent> 
               {
