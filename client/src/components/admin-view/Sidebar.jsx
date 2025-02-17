@@ -69,7 +69,9 @@ function AdminSidebar({ open, setOpen }) {
             <SheetHeader className="border-b">
               <SheetTitle className="flex gap-2 mt-5 mb-5">
                 <ChartNoAxesCombined size={25} />
-                <h1 className="text-2xl font-extrabold">Admin Panel</h1>
+                <span className="text-2xl font-extrabold">Admin Panel</span>
+                <SheetDescription>
+                </SheetDescription>
               </SheetTitle>
             </SheetHeader>
             <MenuItems setOpen={setOpen} />
@@ -82,7 +84,7 @@ function AdminSidebar({ open, setOpen }) {
           className="flex  cursor-pointer items-center gap-2 "
         >
           <ChartNoAxesCombined size={25} />
-          <h1 className="text-2xl font-extrabold">Admin Panel</h1>
+          <span className="text-2xl font-extrabold">Admin Panel</span>
         </div>
         <MenuItems />
       </aside>
