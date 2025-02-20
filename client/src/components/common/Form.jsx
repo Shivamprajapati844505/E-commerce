@@ -1,14 +1,26 @@
-import { Input } from '../ui/input.tsx';
-import { Label } from '../ui/label';
-import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from '../ui/select';
+import { Input } from "../ui/input.tsx";
+import { Label } from "../ui/label";
+import {
+  Select,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+} from "../ui/select";
 import { Textarea } from "../ui/textarea.tsx";
 import { Button } from "../ui/button.tsx";
 
-function CommonForm({ formControls, formData,setFormData, onSubmit, buttonText }) {
-
+function CommonForm({
+  formControls,
+  formData,
+  setFormData,
+  onSubmit,
+  buttonText,
+  isBtnDisable
+}) {
   function renderInputsByComponentsType(getControlItem) {
     let element = null;
-    const value = formData[getControlItem.name] || '';
+    const value = formData[getControlItem.name] || "";
 
     switch (getControlItem.componentType) {
       case "input":
@@ -19,30 +31,40 @@ function CommonForm({ formControls, formData,setFormData, onSubmit, buttonText }
             id={getControlItem.name}
             type={getControlItem.type}
             value={value}
-            onChange={(event) => setFormData({
-              ...formData,
-              [getControlItem.name]: event.target.value
-            })}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
         break;
       case "select":
         element = (
-          <Select onValueChange={(value) => setFormData({
-            ...formData, [getControlItem.name]: value
-          })}
-            value={value}>
+          <Select
+            onValueChange={(value) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: value,
+              })
+            }
+            value={value}
+          >
             <SelectTrigger className="w-full">
-              <SelectValue  className='placeholder:text-slate-500 ' placeholder={getControlItem.label} />
+              <SelectValue
+                className="placeholder:text-slate-500 "
+                placeholder={getControlItem.label}
+              />
             </SelectTrigger>
-            <SelectContent> 
-              {
-                getControlItem.options && getControlItem.options.length > 0 ?
-                  getControlItem.options.map(optionItem =>
+            <SelectContent>
+              {getControlItem.options && getControlItem.options.length > 0
+                ? getControlItem.options.map((optionItem) => (
                     <SelectItem key={optionItem.id} value={optionItem.id}>
                       {optionItem.label}
-                    </SelectItem>) : null
-              }
+                    </SelectItem>
+                  ))
+                : null}
             </SelectContent>
           </Select>
         );
@@ -54,10 +76,12 @@ function CommonForm({ formControls, formData,setFormData, onSubmit, buttonText }
             placeholder={getControlItem.placeholder}
             id={getControlItem.id}
             value={value}
-            onChange={(event) => setFormData({
-              ...formData,
-              [getControlItem.name]: event.target.value,
-            })}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -68,10 +92,12 @@ function CommonForm({ formControls, formData,setFormData, onSubmit, buttonText }
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
             type={getControlItem.type}
-            onChange={(event) => setFormData({
-              ...formData,
-              [getControlItem.name]: event.target.value,
-            })}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -89,7 +115,9 @@ function CommonForm({ formControls, formData,setFormData, onSubmit, buttonText }
           </div>
         ))}
       </div>
-      <Button type="submit" className="mt-8 w-full rounded-xl">{buttonText || 'Submit'}</Button>
+      <Button disabled={isBtnDisable} type="submit" className="mt-8 w-full rounded-xl">
+        {buttonText || "Submit"}
+      </Button>
     </form>
   );
 }
